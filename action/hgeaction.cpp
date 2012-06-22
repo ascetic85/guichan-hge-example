@@ -27,7 +27,6 @@ namespace globals
 
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
-    HGE* hge = hgeCreate(HGE_VERSION);
     try
     {
         hge::init();
@@ -58,7 +57,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
     catch (...)
     {
        MessageBoxA(NULL, 
-                  hge->System_GetErrorMessage(), 
+                  hge::hge->System_GetErrorMessage(), 
                   "Unknown exception", 
                   MB_OK | MB_ICONERROR | MB_SYSTEMMODAL);
         return 1;
