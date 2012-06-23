@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <title>Guichan-hge-example by ascetic85</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Guichan-hge-example</h1>
+        <h2>guichan+hge</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/ascetic85/guichan-hge-example/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/ascetic85/guichan-hge-example/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/ascetic85/guichan-hge-example" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>guichan-hge-example</h1>
+
+<p><strong>HelloWorld</strong>
+<img src="http://github.com/ascetic85/guichan-hge-example/raw/master/helloworld.png" alt="HelloWorld"></p>
+
+<p><strong>Action</strong>
+<img src="http://github.com/ascetic85/guichan-hge-example/raw/master/action.png" alt="Action"></p>
+
+<p><strong>Widget</strong>
+<img src="http://github.com/ascetic85/guichan-hge-example/raw/master/widget.png" alt="Widget"></p>
+
+<p>2012.6.22</p>
+
+<p>guichan 的编译使用经历
+<a href="http://gitorious.org/guichan">http://gitorious.org/guichan</a>
+git clone git://gitorious.org/guichan/mainline.git</p>
+
+<p>07:00 话说guichan-mainline 是跨平台的, 采用的是cmake 来进行编译配置
+这里使用vs2008 编译之. 没有配置sdl/hge等引擎. 得到guichan.dll/guichan.lib
+guichan_opengl.dll/guichan_opengl.lib.
+win 的prebuild链接 <a href="http://thejosh.info/guichan/guichan-0.8.2-devel-win32.zip">http://thejosh.info/guichan/guichan-0.8.2-devel-win32.zip</a></p>
+
+<p>就让我们开始吧
+<a href="http://guichan.sourceforge.net/wiki/index.php/Getting_started">http://guichan.sourceforge.net/wiki/index.php/Getting_started</a>
+    Adding the Guichan source to a project
+    ---------------------------------------</p>
+
+<p>The easiest way of using Guichan is to simply add the Guichan source to an 
+existing project source. By doing so no libraries need to be built. To add 
+the Guichan source just copy the needed source and header files to a project 
+and compile the source files as the other project source files are compiled.
+The Guichan source needed depends on the dependencies of the project using 
+Guichan. The core source of Guichan must be added. The core source is the 
+headers and source files in the include/guichan/, the src/ directory, the 
+include/guichan/widgets directory and the src/widgets directory in the source 
+package (source and header files other directories and subdirectories are not 
+a part of the core source).
+简单的办法就是直接拷贝Guichan 的代码到工程去. 主要代码是
+    include/guichan/
+    include/guichan/widgets
+    src/
+    src/widgets/</p>
+
+<p>To use Guichan with a back end, such as Allegro or SDL, source for that back 
+end must be added. Source for each supported back end reside in a subdirectories 
+of src/ and include/guichan/. In the case of Allegro the source in the allegro 
+subdirectory of the include/guichan/ and src/ directories must be added. In the 
+case of SDL the source in the sdl subdirectory of the include/guichan/ and src/ 
+directories must be added. Source for usage with HGE, OpenGL and OpenLayer have 
+similar subdirectories.
+若是使用Guichan的Backend = {Allegro,SDL,HGE...} 等后端. 对应的代码在
+include/guichan/$Backend
+src/$Backend 对应目录里</p>
+
+<p>For convenience the core source has a header include/guichan.hpp which includes 
+all classes in the core source. All back ends have a similar header. In the case 
+of Allegro the header is include/guichan/allegro.hpp. In the case of SDL the 
+header is include/guichan/sdl.hpp.
+为方便使用Guichan, 只需要 包含include/guichan.hpp, 对应的后端则是
+include/guichan/$Backend.hpp</p>
+
+<p>If you're using the OpenLayer back end, you can't make a shared library (DLL) 
+from the guichan_openlayer sources, due to the fact that OpenLayer uses global 
+variables internally. So the best way to use guichan with OpenLayer back end is 
+to either put all guichan and guichan_openlayer sources into your project, or 
+create a static library which is linked to your executable. There are two things 
+to know as well: It doesn't work with OpenLayer 2.0, you have to use a reasonable 
+recent snapshot from SVN (2007/04 for example). You should also not use OpenLayer
+ with GlyphKeeper, but the internal text renderer instead.
+注意: 当你使用OpenLayer 后端时, 是不能产生guichan_openlayer.dll的,因为OpenLayer
+后端内部使用全局变量. 所以最好是拷贝代码的方式使用之. pa pa..</p>
+
+<p>07:30 OK. 我们来先把Guichan + HGE一下</p>
+
+<p>首先拿hge_tut01 开刀
+1&gt;hge_tut01.obj : error LNK2001: 无法解析的外部符号 "public: __thiscall gcn::HGEInput::HGEInput(void)" (??0HGEInput@gcn@@QAE@XZ)
+1&gt;hge_tut01.obj : error LNK2001: 无法解析的外部符号 "public: __thiscall gcn::HGEGraphics::HGEGraphics(void)" (??0HGEGraphics@gcn@@QAE@XZ)
+1&gt;hge_tut01.obj : error LNK2001: 无法解析的外部符号 "public: __thiscall gcn::HGEImageLoader::HGEImageLoader(void)" (??0HGEImageLoader@gcn@@QAE@XZ)
+没有包含Guichan/src/hge/*.cpp</p>
+
+<p>1&gt;e:\workspace\gamesdk\hge181\tutorials\tutorial01\guichan\src\hge\hgeinput.cpp(118) : error C2146: 语法错误 : 缺少“)”(在标识符“pollKeyInput”的前面)
+while (mHGE-&gt;Input_GetEvent(&amp;ie)) 确实少一括号.</p>
+
+<p>VS 少了一个hgehelp.lib </p>
+
+<p>06-23 日
+06:49: 所有的东西都是糊弄的, 想要了解这些库还是应该需要先通翻官网的资料,FAQ, Wiki等等
+MSVC 10 我使用了VS2008
+Instructions are for Microsoft Visual C++ 2010 Express, for compiling a DLL which contains guichan, guichan-opengl and guichan-sdl libraries.
+编译包含guichan-opengl和guichan-hge 的动态连接库.
+SDL 相关的可以忽略, hge的库拷贝到vs2008/VC/{include,lib} 下.</p>
+
+<p>Download the source</p>
+
+<ul>
+<li>Extract the source. You may need 7zip or similar to handle .tar.gz archives</li>
+<li>Open vc++2010 / vs2008</li>
+<li>Create a new project, select "Win32 Console Application", choose a project name (like guichan)</li>
+<li>In the wizard that pops up, choose "DLL" under "Application type". Also tick the box "Empty Project".</li>
+<li>Click finish</li>
+<li>In the solution explorer, right-click the project, and choose "Add" &gt; "Existing item..."</li>
+<li>Add all of the source files at the root level of the "src" directory.</li>
+<li>Repeat for all of the files in the "widgets" directory, as well as the files in the "opengl" directory and the "sdl" directory.</li>
+<li>Download and extract the "SDL development library for vc++2008"</li>
+<li>Download and extract the "SDL image development library"</li>
+<li>Right-click on the project, select properties</li>
+<li>"C++" &gt; "General" &gt; "Additional include directories": Add the "include/" directories from the guichan source, the SDL development sdk and the SDL_image development sdk</li>
+<li>"Linker" &gt; "Input" &gt; "Additional dependencies": Add "opengl32.lib", "glu32.lib", "SDL.lib" and "SDL_image.lib"</li>
+<li>"VC++ Directories" &gt; "Library directories": Add the "lib/" directory from SDL and the "lib/x86" dir from SDL<em>image Add this to your Preprocessor directives: "GCN_CORE_DECLSPEC=</em><em>declspec(dllexport)" and  "GCN_EXTENSION_DECLSPEC=</em>_declspec(dllexport)" (必须)</li>
+<li>Build + Pray</li>
+</ul><p>07:38
+拿 guichan-manline\examples 的
+helloworld.hpp, hge.hpp, hgehelloworld.cpp 测试一下.
+记得拷贝 fixedfont.bmp 到{Debug,Release} 中去.
+更改.  MessageBox -&gt; MessageBoxA  (A: Ascii)
+Bingo !</p>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
