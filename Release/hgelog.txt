@@ -1,0 +1,19 @@
+HGE Started..
+
+HGE version: 1.80
+Date: 23.06.2012, 08:12:26
+
+Application: HGE
+OS: Windows 5.1.2600
+Memory: 2096344K total, 1107968K free
+
+D3D Driver: ati2dvag.dll
+Description: ATI Radeon HD 3800 Series
+Version: 6.14.10.7256
+Mode: 640 x 480 x X8R8G8B8
+
+Init done.
+
+
+Finishing..
+The End.

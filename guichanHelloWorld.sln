@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Action", "action\action.vcproj", "{AEB0EAA5-2F20-4EC4-A8FC-E8787EAE6AE2}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Widget", "Widget\Widget.vcproj", "{436071CE-5329-4F06-9945-B992231685B9}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloWorld", "HelloWorld\HelloWorld.vcproj", "{67FAEA44-EB82-4786-ABF3-46B162EF6EB1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AEB0EAA5-2F20-4EC4-A8FC-E8787EAE6AE2}.Debug|Win32.ActiveCfg = Debug|Win32
+		{AEB0EAA5-2F20-4EC4-A8FC-E8787EAE6AE2}.Debug|Win32.Build.0 = Debug|Win32
+		{AEB0EAA5-2F20-4EC4-A8FC-E8787EAE6AE2}.Release|Win32.ActiveCfg = Release|Win32
+		{AEB0EAA5-2F20-4EC4-A8FC-E8787EAE6AE2}.Release|Win32.Build.0 = Release|Win32
+		{436071CE-5329-4F06-9945-B992231685B9}.Debug|Win32.ActiveCfg = Debug|Win32
+		{436071CE-5329-4F06-9945-B992231685B9}.Debug|Win32.Build.0 = Debug|Win32
+		{436071CE-5329-4F06-9945-B992231685B9}.Release|Win32.ActiveCfg = Release|Win32
+		{436071CE-5329-4F06-9945-B992231685B9}.Release|Win32.Build.0 = Release|Win32
+		{67FAEA44-EB82-4786-ABF3-46B162EF6EB1}.Debug|Win32.ActiveCfg = Debug|Win32
+		{67FAEA44-EB82-4786-ABF3-46B162EF6EB1}.Debug|Win32.Build.0 = Debug|Win32
+		{67FAEA44-EB82-4786-ABF3-46B162EF6EB1}.Release|Win32.ActiveCfg = Release|Win32
+		{67FAEA44-EB82-4786-ABF3-46B162EF6EB1}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
